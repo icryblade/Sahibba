@@ -1,0 +1,261 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Game Area */
+.game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Score Display */
+.score-display {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Game Section */
+.game {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Input Section */
+.name-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.name-input input {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.name-input button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.name-input button:hover {
+    background-color: #0056b3;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.controls button, .controls select {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+}
+
+.controls button:hover {
+    background-color: #218838;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #DCEDC8;
+    border-radius: 5px;
+}
+
+.grid div.vowel {
+    background-color: #F8BBD0;
+}
+
+.grid div.joker {
+    background-color: #B39DDB;
+}
+
+/* Word Display */
+.answer-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.word-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+}
+
+.word-display div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: grab;
+    background-color: #BBDEFB;
+    border-radius: 5px;
+}
+
+/* Timer */
+.timer {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.timer.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Joker Cards */
+.joker-cards {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.joker-grid {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.joker-grid div {
+    width: 50px;
+    height: 50px;
+    background-color: #FFCC80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Leaderboard */
+.leaderboard {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.leaderboard h2 {
+    margin-top: 0;
+}
+
+#word-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+#word-list li {
+    margin-bottom: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game {
+        width: 90%;
+    }
+
+    .leaderboard {
+        order: -1;
+        width: 90%;
+    }
+
+    .joker-cards {
+        width: 90%;
+    }
+
+    .grid {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 100%;
+    }
+}

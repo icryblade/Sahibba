@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Puzzle - Bahasa Melayu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sahibba</h1>
+        <!-- Score Display -->
+        <div class="score-display" id="score-display">Skor: 0</div>
+        <div class="game">
+            <!-- Name Input -->
+            <div class="name-input">
+                <input type="text" id="name-input" placeholder="Masukkan nama anda" autocomplete="off">
+                <button id="name-button">Hantar Nama</button>
+            </div>
+            <!-- Game Controls -->
+            <div class="controls">
+                <button id="start-button">Mula</button>
+                <select id="time-select">
+                    <option value="10">0 Minit</option>
+                    <option value="300">5 Minit</option>
+                    <option value="600">10 Minit</option>
+                    <option value="900">15 Minit</option>
+                    <option value="1200">20 Minit</option>
+                    <option value="1800">30 Minit</option>
+                    <option value="2100">35 Minit</option>
+                    <option value="2400">40 Minit</option>
+                    <option value="2700">45 Minit</option>
+                </select>
+                <button id="refresh-button">Refresh Alphabet (2x)</button>
+            </div>
+            <!-- Game Grid -->
+            <div class="grid" id="grid"></div>
+            <!-- Answer Box -->
+            <div class="answer-box">
+                <div class="word-display" id="word-display"></div>
+                <button id="chop-button">CHOPP</button>
+            </div>
+            <!-- Timer -->
+            <div class="timer" id="timer">Masa: 00:00</div>
+        </div>
+        <!-- Joker Cards -->
+        <div class="joker-cards">
+            <h2>Wildcard</h2>
+            <div class="joker-grid" id="joker-grid"></div>
+        </div>
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+            <h2>Senarai Perkataan</h2>
+            <ul id="word-list"></ul>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
