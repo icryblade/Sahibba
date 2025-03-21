@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Puzzle - Bahasa Melayu</title>
+    <title>Sahibba</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <!-- Fixed Header Section -->
+    <div class="fixed-header">
         <h1>Sahibba</h1>
-        <!-- Score Display -->
-        <div class="score-display" id="score-display">Skor: 0</div>
+        <div class="score-display" id="score-display">Score: 0</div>
+        <div class="timer" id="timer">Time: 00:00</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
         <div class="game">
             <!-- Name Input -->
             <div class="name-input">
-                <input type="text" id="name-input" placeholder="Masukkan nama anda" autocomplete="off">
-                <button id="name-button">Hantar Nama</button>
+                <input type="text" id="name-input" placeholder="Masukkan Nama" autocomplete="off">
+                <button id="name-button">Hantar</button>
             </div>
+            
             <!-- Game Controls -->
             <div class="controls">
                 <button id="start-button">Mula</button>
                 <select id="time-select">
-                    <option value="10">0 Minit</option>
+                    <option value="10">30 Saat</option>
                     <option value="300">5 Minit</option>
                     <option value="600">10 Minit</option>
                     <option value="900">15 Minit</option>
@@ -32,30 +38,51 @@
                     <option value="2400">40 Minit</option>
                     <option value="2700">45 Minit</option>
                 </select>
-                <button id="refresh-button">Refresh Alphabet (2x)</button>
+                <button id="refresh-button">Refresh Letters (2x)</button>
             </div>
+
             <!-- Game Grid -->
             <div class="grid" id="grid"></div>
+
             <!-- Answer Box -->
             <div class="answer-box">
                 <div class="word-display" id="word-display"></div>
-                <button id="chop-button">CHOPP</button>
+                <button id="chop-button">CHOP</button>
             </div>
-            <!-- Timer -->
-            <div class="timer" id="timer">Masa: 00:00</div>
+
         </div>
-        <!-- Joker Cards -->
-        <div class="joker-cards">
-            <h2>Wildcard</h2>
-            <div class="joker-grid" id="joker-grid"></div>
-        </div>
-        <!-- Leaderboard -->
-        <div class="leaderboard">
-            <h2>Senarai Perkataan</h2>
-            <ul id="word-list"></ul>
+
+        <!-- Side Panel -->
+        <div class="side-panel">
+            <!-- Joker Cards -->
+            <div class="joker-cards">
+                <h2>Wildcards</h2>
+                <div class="joker-grid" id="joker-grid"></div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="leaderboard">
+                <h2>Senarai Perkataan</h2>
+                <ul id="word-list"></ul>
+            </div>
         </div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
+
+<!-- 在 index.html 的 body 末尾添加 -->
+<div class="fab-container">
+    <div class="fab-main">
+      <a href="https://forms.gle/Ao3xLpSwCq6CSCm88" 
+         target="_blank"
+         class="fab-button">
+        <span class="zh-label">Lapor Masalah</span>
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7v-2h10v2zm0-3H7v-2h10v2zm0-3H7V6h10v2z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
