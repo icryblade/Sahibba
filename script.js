@@ -49,9 +49,12 @@ function generateLetters() {
     const vowels = 'aeiou';
     const consonants = 'bcdfghjklmnpqrstvwxyz';
     
-    // Ensure exactly 30 letters (6x5 grid)
-    const vowelCount = Math.min(Math.floor(Math.random() * 5) + 7, 25); // Max 25 vowels
-    const consonantCount = 30 - vowelCount - (hasWildcard ? 1 : 0);
+    // Generate vowel count between 10-15
+    const vowelCount = Math.floor(Math.random() * 6) + 10;
+    
+    // New grid should reset wildcard status
+    const addWildcard = Math.random() < 0.3; // 30% chance for wildcard
+    const consonantCount = 30 - vowelCount - (addWildcard ? 1 : 0);
 
     let letters = [];
     
@@ -65,10 +68,12 @@ function generateLetters() {
         letters.push(consonants[Math.floor(Math.random() * consonants.length)]);
     }
     
-    // Add wildcard if none exists
-    if (!hasWildcard && Math.random() < 0.3) {
+    // Add wildcard if needed
+    if (addWildcard) {
         letters.push('*');
         hasWildcard = true;
+    } else {
+        hasWildcard = false;
     }
     
     // Shuffle and create grid
@@ -199,7 +204,32 @@ function checkWord() {
     scoreDisplay.textContent = `Skor: ${score}`;
     wordList.innerHTML += `<li>${rawWord} (+${wordScore} mark)</li>`; // Show marks next to word
     
-    generateLetters();
+    function replaceUsedLetters() {
+        const vowels = 'aeiou';
+        const consonants = 'bcdfghjklmnpqrstvwxyz';
+        const gridLetters = document.querySelectorAll('.grid div');
+    
+        gridLetters.forEach(letter => {
+            if (letter.classList.contains('selected')) {
+                // Generate new letter (keep vowel/consonant balance)
+                const isVowelPosition = Math.random() < 0.4; // 40% chance for vowel
+                const newLetter = isVowelPosition 
+                    ? vowels[Math.floor(Math.random() * vowels.length)]
+                    : consonants[Math.floor(Math.random() * consonants.length)];
+    
+                // Update the letter
+                letter.textContent = newLetter;
+                letter.className = isVowelPosition ? 'vowel' : '';
+                letter.classList.remove('selected');
+                letter.style.visibility = 'visible';
+            }
+        });
+    
+        // Re-add click listeners to new letters
+        addLetterListeners();
+    }
+    
+    replaceUsedLetters();
         // Do not regenerate wildcard cards to prevent them from resetting
     } else {
         alert('Perkataan tidak sah: ' + rawWord);
@@ -212,7 +242,7 @@ function checkWord() {
 function resetSelection() {
     const gridLetters = document.querySelectorAll('.grid div');
     gridLetters.forEach(gridLetter => {
-        if (selectedWord.includes(gridLetter.textContent)) {
+        if (gridLetter.classList.contains('selected')) {
             gridLetter.style.visibility = 'visible';
             gridLetter.classList.remove('selected');
         }
